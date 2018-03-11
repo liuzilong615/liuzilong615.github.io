@@ -1,0 +1,335 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="utf-8">
+  
+  <title>Stirling 公式 | </title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="Stirling 公式证明 ============ 斯特林公式（Stirling’s approximation）是一条用来取n的阶乘的近似值的数学公式。一般来说，当n很大的时候，n阶乘的计算量十分大，所以斯特林公式十分好用，而且，即使在n很小的时候，斯特林公式的取值已经十分准确。 斯特林公式描述如下：  \lim_{n\to \infty}{n!} \to \sqrt{2\pi n} (\fr">
+<meta name="keywords" content="math">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Stirling 公式">
+<meta property="og:url" content="https://liuzilong615.github.io/2018/01/14/stirling/index.html">
+<meta property="og:site_name">
+<meta property="og:description" content="Stirling 公式证明 ============ 斯特林公式（Stirling’s approximation）是一条用来取n的阶乘的近似值的数学公式。一般来说，当n很大的时候，n阶乘的计算量十分大，所以斯特林公式十分好用，而且，即使在n很小的时候，斯特林公式的取值已经十分准确。 斯特林公式描述如下：  \lim_{n\to \infty}{n!} \to \sqrt{2\pi n} (\fr">
+<meta property="og:image" content="https://liuzilong615.github.io/assets/images/stirling/ln_x_histogram.png">
+<meta property="og:image" content="https://liuzilong615.github.io/assets/images/stirling/ln_x_lower.png">
+<meta property="og:image" content="https://liuzilong615.github.io/assets/images/stirling/ln_x_upper.png">
+<meta property="og:updated_time" content="2018-03-11T09:53:02.469Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Stirling 公式">
+<meta name="twitter:description" content="Stirling 公式证明 ============ 斯特林公式（Stirling’s approximation）是一条用来取n的阶乘的近似值的数学公式。一般来说，当n很大的时候，n阶乘的计算量十分大，所以斯特林公式十分好用，而且，即使在n很小的时候，斯特林公式的取值已经十分准确。 斯特林公式描述如下：  \lim_{n\to \infty}{n!} \to \sqrt{2\pi n} (\fr">
+<meta name="twitter:image" content="https://liuzilong615.github.io/assets/images/stirling/ln_x_histogram.png">
+  
+    <link rel="alternate" href="/atom.xml" title="" type="application/atom+xml">
+  
+  
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
+
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css" integrity="sha384-XdYbMnZ/QjLh6iI4ogqCTaIjrFk87ip+ekIjefZch0Y+PvJ8CDYtEs1ipDmPorQ+" crossorigin="anonymous">
+
+  <link rel="stylesheet" href="/css/styles.css"><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+  
+
+</head>
+
+<body>
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><nav class="navbar navbar-inverse">
+  <div class="container">
+    <!-- Brand and toggle get grouped for better mobile display -->
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#main-menu-navbar" aria-expanded="false">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      
+    </div>
+
+    <!-- Collect the nav links, forms, and other content for toggling -->
+    <div class="collapse navbar-collapse" id="main-menu-navbar">
+      <ul class="nav navbar-nav">
+        
+          <li><a class=""
+                 href="/index.html">Home</a></li>
+        
+          <li><a class=""
+                 href="/archives/">Archives</a></li>
+        
+      </ul>
+
+      <!--
+      <ul class="nav navbar-nav navbar-right">
+        
+          <li><a href="/atom.xml" title="RSS Feed"><i class="fa fa-rss"></i></a></li>
+        
+      </ul>
+      -->
+    </div><!-- /.navbar-collapse -->
+  </div><!-- /.container-fluid -->
+</nav>
+
+  <div class="container">
+    <div class="blog-header">
+  <h1 class="blog-title"></h1>
+  
+</div>
+
+    <div class="row">
+        <div class="col-sm-8 blog-main">
+          <article id="post-stirling" class="article article-type-post" itemscope itemprop="blogPost">
+
+  <header class="article-header">
+    
+  
+    <h1 class="article-title" itemprop="name">
+      Stirling 公式
+    </h1>
+  
+
+
+  </header>
+
+  <div class="article-meta">
+    <div class="article-datetime">
+  <a href="/2018/01/14/stirling/" class="article-date"><time datetime="2018-01-14T10:41:57.000Z" itemprop="datePublished">2018-01-14</time></a>
+</div>
+
+    
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/proof/">proof</a>
+  </div>
+
+
+  </div>
+  <div class="article-inner">
+
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>Stirling 公式证明</p>
+<p>============</p>
+<p>斯特林公式（Stirling’s approximation）是一条用来取n的阶乘的近似值的数学公式。一般来说，当n很大的时候，n阶乘的计算量十分大，所以斯特林公式十分好用，而且，即使在n很小的时候，斯特林公式的取值已经十分准确。</p>
+<p>斯特林公式描述如下：</p>
+<script type="math/tex; mode=display">
+\lim_{n\to \infty}{n!} \to \sqrt{2\pi n} (\frac{n}{e})^n</script><p>下面对公式做一下证明，考虑对n!取对数，那么<script type="math/tex">ln(n!)=\sum_{k=1}^n{ln(k)}</script>,它是从1到n的对数直方图的累加，如图：</p>
+<div style="text-align:center">
+  <img width="450" height="200" src="/assets/images/stirling/ln_x_histogram.png">
+</div>
+
+<p>直觉上用<script type="math/tex">\int_1^n{ln(x)}dx</script>可以逼近直方图的累计和，因为对数函数为凹函数，对曲线分别做内接和外切线，可以得到积分面积的一个上下限：</p>
+<div style="text-align:center">
+  <img width="450" height="200" src="/assets/images/stirling/ln_x_lower.png">
+  <div style="text-align:center">内接梯形为下限累计值</div>
+</div>
+
+<div style="text-align:center">
+  <img width="450" height="200" src="/assets/images/stirling/ln_x_upper.png">
+  <div style="text-align:center">外切梯形为上限累计值</div>
+</div>
+
+<p>于是就有不等式：</p>
+<script type="math/tex; mode=display">
+\sum_{k=1}^{n-1}{ \frac{\ln k + \ln (k+1)}{2} } 
+\leq \int_1^n{ln(x)}dx 
+\leq \sum_{2}^{n-1}{\ln k} + \frac {\ln n}{2} + \frac {1}{4}</script><p>整理之后：</p>
+<script type="math/tex; mode=display">
+\sum_{k=1}^{n}{\ln k} - \frac {\ln k}{2}
+\leq n \ln n - n + 1
+\leq \sum_{k=1}^{n}{\ln k} - \frac {\ln n}{2} + \frac {1}{4}</script><script type="math/tex; mode=display">
+0 \leq \sum_{k=1}^{n}{\ln k} - (n+ \frac{1}{2})\ln (\frac {n}{e}) - \frac {5}{4} \leq \frac {1}{4}</script><p>令<script type="math/tex">s_{n}=\sum_{k=1}^{n}{\ln k} - (n+ \frac{1}{2})\ln (\frac {n}{e}) - \frac {5}{4}</script>，那么<script type="math/tex">s_{n}</script>是一个有界序列，如果它同时也是单调序列，那么序列收敛。有:</p>
+<script type="math/tex; mode=display">
+s_{n+1} - s_{n} 
+= \ln (n+1) - (n+1+ \frac{1}{2})\ln (\frac {n}{e}) + ( n + \frac {1}{2}) \ln (\frac{n}{e})
+= 1 - (n+\frac{1}{2})\ln \frac{n+1}{n}</script><p>令<script type="math/tex">f(t)=\ln(1+t)</script>,对f(t)在0附近做<a href="!--￼0--">泰勒展开</a> , 其中<script type="math/tex">f^{(k)}(t)=(-1)^{k-1}\frac {(k-1)!}{(1+t)^{k}}</script>：</p>
+<script type="math/tex; mode=display">
+f(t) = \ln ( 1 + t) = \frac {t}{1+t} - \frac{1}{2} (\frac {t}{1+t})^2 + \frac {1}{3} (\frac{t}{1+t})^3 - \frac {1}{4}(\frac {t}{1+t})^4 ...
+\lt \frac {t}{1+t}</script><p>于是，求得<script type="math/tex">f(\frac {1}{n}) = \ln ( 1 + \frac{1}{n})  \lt \frac{1}{n+1}</script>，因此</p>
+<script type="math/tex; mode=display">
+s_{n + 1} - s_{n} = 1 - ( n + \frac{1}{2})\ln (1 + \frac{1}{n})
+\gt 1 - \frac {n + \frac{1}{2}}{n + 1}
+\gt 0</script><p>，可知序列单调递增，因此序列收敛并且有上确界，<script type="math/tex">s_{n}</script>的极限就是此上确界。</p>
+<script type="math/tex; mode=display">
+\lim_{n \to \infty} s_{n} \to C_0 (C_0 为某个常数)</script><script type="math/tex; mode=display">
+\lim_{n \to \infty} e^{s_n} \to C_1</script><p>继续化简，消除<script type="math/tex">s_n</script>中的常数部分，可以得到:</p>
+<script type="math/tex; mode=display">
+\lim_{n \to \infty} \frac {n!}{(\frac{n}{e})^{(n+1/2)}} \to C</script><p>最后，需要用到Wallis公式，针对求出的极限，算出常量C，Wallis公式如下所示， 它是根据对三角函数n次方积分，在极限情况下推出，收敛到一个跟<script type="math/tex">\frac {\pi}{2}</script>相关的数：</p>
+<script type="math/tex; mode=display">
+\lim_{n \to \infty} \frac {(2n)!!}{(2n + 1)!!} \frac {(2n)!!}{(2n - 1)!!}
+\to \frac {\pi}{2}</script><p>将Wallis公式稍做变换，并将之前求出的极限式代入，可得到：</p>
+<script type="math/tex; mode=display">
+\lim_{n \to \infty} \frac {(2n)!!}{(2n + 1)!!} \frac {(2n)!!}{(2n - 1)!!}</script><script type="math/tex; mode=display">
+= \lim_{n \to \infty} \frac {2^{4n}(n!)^{4}}{(2n)!(2n)!} \frac {1}{2n+1}</script><script type="math/tex; mode=display">
+= \lim_{n \to \infty} \frac {(\frac {n}{e})^{4(n+1/2)} 2^{4n}C^4}
+{(\frac {2n}{e})^{2(2n + 1/2)} C^{2}} \frac {1}{2n+1}</script><script type="math/tex; mode=display">
+=\lim_{n \to \infty} {\frac {(\frac {n}{e})C^2}{2(2n+1)}} \to \frac {\pi}{2}</script><p>因此<script type="math/tex">C = \sqrt{2\pi e}</script>，并且</p>
+<script type="math/tex; mode=display">
+\lim_{n \to \infty} { \frac {n!}{(\frac{n}{e})^{(n+1/2)}} } \to \sqrt{2\pi e}</script><p>，于是很容易知道<script type="math/tex">\lim_{n\to \infty}{n!} \to \sqrt{2\pi n} (\frac{n}{e})^n</script>了。</p>
+<blockquote>
+<p><br></p>
+</blockquote>
+
+      
+    </div>
+
+    
+      
+
+    
+
+    <footer class="article-footer">
+      <a data-url="https://liuzilong615.github.io/2018/01/14/stirling/" data-id="cjemmicvn0003yce6hyfkn9rf" class="article-share-link">
+        <i class="fa fa-share"></i> Share
+      </a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/math/">math</a></li></ul>
+
+
+    </footer>
+  </div>
+  
+    
+<ul id="article-nav" class="nav nav-pills nav-justified">
+  
+  <li role="presentation">
+    <a href="/2018/01/14/tylor/" id="article-nav-older" class="article-nav-link-wrap">
+      <i class="fa fa-chevron-left pull-left"></i>
+      <span class="article-nav-link-title">泰勒公式</span>
+    </a>
+  </li>
+  
+  
+  <li role="presentation">
+    <a href="/2018/01/20/multi-tylor/" id="article-nav-newer" class="article-nav-link-wrap">
+      <span class="article-nav-link-title">多元泰勒展开</span>
+      <i class="fa fa-chevron-right pull-right"></i>
+    </a>
+  </li>
+  
+</ul>
+
+
+  
+</article>
+
+
+
+
+        </div>
+        <div class="col-sm-3 col-sm-offset-1 blog-sidebar">
+          
+  <div class="sidebar-module sidebar-module-inset">
+  <h4>About</h4>
+  <p>A blog.</p>
+
+</div>
+
+
+  
+  <div class="sidebar-module">
+    <h4>Categories</h4>
+    <ul class="sidebar-module-list"><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/categories/proof/">proof</a><span class="sidebar-module-list-count">3</span></li></ul>
+  </div>
+
+
+
+  
+  <div class="sidebar-module">
+    <h4>Tags</h4>
+    <ul class="sidebar-module-list"><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/tags/math/">math</a><span class="sidebar-module-list-count">3</span></li></ul>
+  </div>
+
+
+
+  
+  <div class="sidebar-module">
+    <h4>Tag Cloud</h4>
+    <p class="tagcloud">
+      <a href="/tags/math/" style="font-size: 10px;">math</a>
+    </p>
+  </div>
+
+
+  
+  <div class="sidebar-module">
+    <h4>Archives</h4>
+    <ul class="sidebar-module-list"><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/archives/2018/03/">March 2018</a><span class="sidebar-module-list-count">2</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/archives/2018/01/">January 2018</a><span class="sidebar-module-list-count">3</span></li></ul>
+  </div>
+
+
+
+  
+  <div class="sidebar-module">
+    <h4>Recents</h4>
+    <ul class="sidebar-module-list">
+      
+        <li>
+          <a href="/2018/03/11/hello-world/">Hello World</a>
+        </li>
+      
+        <li>
+          <a href="/2018/03/03/hello-hexo/">hello-hexo</a>
+        </li>
+      
+        <li>
+          <a href="/2018/01/20/multi-tylor/">多元泰勒展开</a>
+        </li>
+      
+        <li>
+          <a href="/2018/01/14/stirling/">Stirling 公式</a>
+        </li>
+      
+        <li>
+          <a href="/2018/01/14/tylor/">泰勒公式</a>
+        </li>
+      
+    </ul>
+  </div>
+
+
+
+        </div>
+    </div>
+  </div>
+  <footer class="blog-footer">
+  <div class="container">
+    <div id="footer-info" class="inner">
+      &copy; 2018 大橘<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+
+  
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js" integrity="sha384-8gBf6Y4YYq7Jx97PIqmTwLPin4hxIzQw5aDmUg/DDhul9fFpbbLcLh3nTIIDJKhx" crossorigin="anonymous"></script>
+
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
+
+
+
+<script src="/js/script.js"></script>
+
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+        tex2jax: {
+            inlineMath: [ ["$","$"], ["\\(","\\)"] ],
+            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'],
+            processEscapes: true
+        }
+    });
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax();
+        for (var i = 0; i < all.length; ++i)
+            all[i].SourceElement().parentNode.className += ' has-jax';
+    });
+</script>
+<script src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+</body>
+</html>

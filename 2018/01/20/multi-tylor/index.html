@@ -1,0 +1,295 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="utf-8">
+  
+  <title>多元泰勒展开 | </title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="多元泰勒公式 以二元函数为例，对二元函数做泰勒展开，更高元函数类似。假设函数f(x,y)在某个点p的邻域内n阶二元可导，对f(x,y)在(x_{0},y_{0})附近做泰勒展开。 首先假设函数f(x,y)只在在某个向量方向上取值,比如向量(h,k),那么在这个方向上，可将多元函数转为一元函数，继而转化为在一元函数上做泰勒展开：   x = x(t) = x_{0} + ht y = y(t) =">
+<meta name="keywords" content="math">
+<meta property="og:type" content="article">
+<meta property="og:title" content="多元泰勒展开">
+<meta property="og:url" content="https://liuzilong615.github.io/2018/01/20/multi-tylor/index.html">
+<meta property="og:site_name">
+<meta property="og:description" content="多元泰勒公式 以二元函数为例，对二元函数做泰勒展开，更高元函数类似。假设函数f(x,y)在某个点p的邻域内n阶二元可导，对f(x,y)在(x_{0},y_{0})附近做泰勒展开。 首先假设函数f(x,y)只在在某个向量方向上取值,比如向量(h,k),那么在这个方向上，可将多元函数转为一元函数，继而转化为在一元函数上做泰勒展开：   x = x(t) = x_{0} + ht y = y(t) =">
+<meta property="og:updated_time" content="2018-03-11T09:53:02.468Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="多元泰勒展开">
+<meta name="twitter:description" content="多元泰勒公式 以二元函数为例，对二元函数做泰勒展开，更高元函数类似。假设函数f(x,y)在某个点p的邻域内n阶二元可导，对f(x,y)在(x_{0},y_{0})附近做泰勒展开。 首先假设函数f(x,y)只在在某个向量方向上取值,比如向量(h,k),那么在这个方向上，可将多元函数转为一元函数，继而转化为在一元函数上做泰勒展开：   x = x(t) = x_{0} + ht y = y(t) =">
+  
+    <link rel="alternate" href="/atom.xml" title="" type="application/atom+xml">
+  
+  
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
+
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css" integrity="sha384-XdYbMnZ/QjLh6iI4ogqCTaIjrFk87ip+ekIjefZch0Y+PvJ8CDYtEs1ipDmPorQ+" crossorigin="anonymous">
+
+  <link rel="stylesheet" href="/css/styles.css"><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+  
+
+</head>
+
+<body>
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><nav class="navbar navbar-inverse">
+  <div class="container">
+    <!-- Brand and toggle get grouped for better mobile display -->
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#main-menu-navbar" aria-expanded="false">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      
+    </div>
+
+    <!-- Collect the nav links, forms, and other content for toggling -->
+    <div class="collapse navbar-collapse" id="main-menu-navbar">
+      <ul class="nav navbar-nav">
+        
+          <li><a class=""
+                 href="/index.html">Home</a></li>
+        
+          <li><a class=""
+                 href="/archives/">Archives</a></li>
+        
+      </ul>
+
+      <!--
+      <ul class="nav navbar-nav navbar-right">
+        
+          <li><a href="/atom.xml" title="RSS Feed"><i class="fa fa-rss"></i></a></li>
+        
+      </ul>
+      -->
+    </div><!-- /.navbar-collapse -->
+  </div><!-- /.container-fluid -->
+</nav>
+
+  <div class="container">
+    <div class="blog-header">
+  <h1 class="blog-title"></h1>
+  
+</div>
+
+    <div class="row">
+        <div class="col-sm-8 blog-main">
+          <article id="post-multi-tylor" class="article article-type-post" itemscope itemprop="blogPost">
+
+  <header class="article-header">
+    
+  
+    <h1 class="article-title" itemprop="name">
+      多元泰勒展开
+    </h1>
+  
+
+
+  </header>
+
+  <div class="article-meta">
+    <div class="article-datetime">
+  <a href="/2018/01/20/multi-tylor/" class="article-date"><time datetime="2018-01-20T08:00:57.000Z" itemprop="datePublished">2018-01-20</time></a>
+</div>
+
+    
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/proof/">proof</a>
+  </div>
+
+
+  </div>
+  <div class="article-inner">
+
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="多元泰勒公式"><a href="#多元泰勒公式" class="headerlink" title="多元泰勒公式"></a>多元泰勒公式</h1><blockquote>
+<p>以二元函数为例，对二元函数做泰勒展开，更高元函数类似。假设函数f(x,y)在某个点p的邻域内n阶二元可导，对f(x,y)在<script type="math/tex">(x_{0},y_{0})</script>附近做泰勒展开。</p>
+<p>首先假设函数f(x,y)只在在某个向量方向上取值,比如向量(h,k),那么在这个方向上，可将多元函数转为一元函数，继而转化为在一元函数上做<a href="!--￼0--">泰勒展开</a>：</p>
+</blockquote>
+<script type="math/tex; mode=display">
+x = x(t) = x_{0} + ht</script><script type="math/tex; mode=display">
+y = y(t) = y_{0} + kt</script><script type="math/tex; mode=display">
+g(t) = f(x,y) = f(x(t), y(t)) = f(x_{0} + ht, y_{0} + kt)</script><blockquote>
+<p>对g(t)做泰勒展开，即是f(x,y)的二元展开序列，因此可以先求出g(t)的k阶导数。</p>
+</blockquote>
+<script type="math/tex; mode=display">
+g(t) = \frac {\partial f}{\partial x} \frac {dx}{dt} 
++ \frac {\partial f}{\partial y} \frac {dy}{dt}
+= (h\frac {\partial}{\partial x} + k \frac {\partial }{\partial y})f_{xy}</script><blockquote>
+<p>可以推导出</p>
+</blockquote>
+<script type="math/tex; mode=display">
+g^{(k)}(t) = (h\frac {\partial}{\partial x} + k \frac {\partial }{\partial y})^{k}f_{xy}</script><blockquote>
+<p>其中<script type="math/tex">(h\frac {\partial}{\partial x} + k \frac {\partial }{\partial y})</script>为算子,可直接按照多项式计算,因此，直接带入一维泰勒展开式，就得到令二维展开</p>
+</blockquote>
+<script type="math/tex; mode=display">
+f(x,y) = \sum_{k=0}^{n-1} \frac {((x-x_{0})\frac {\partial}{\partial x} + (y-y_{0}) \frac {\partial }{\partial y})^{k}f_{x_{0}y_{0}}}{k!} + \frac {((x-x_{0}) \frac {\partial}{\partial x} + (y-y_{0}) \frac {\partial }{\partial y})^{n}f_{x_{\xi}y_{\xi}}}{n!}</script><blockquote>
+<p>其中<script type="math/tex">(x_{\xi}, y_{\xi})</script>在<script type="math/tex">(x_{0}, y_{0})</script>和<script type="math/tex">(x,y)</script>之间。</p>
+</blockquote>
+<p><br></p>
+
+      
+    </div>
+
+    
+      
+
+    
+
+    <footer class="article-footer">
+      <a data-url="https://liuzilong615.github.io/2018/01/20/multi-tylor/" data-id="cjemmicvi0002yce6goxzf5fa" class="article-share-link">
+        <i class="fa fa-share"></i> Share
+      </a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/math/">math</a></li></ul>
+
+
+    </footer>
+  </div>
+  
+    
+<ul id="article-nav" class="nav nav-pills nav-justified">
+  
+  <li role="presentation">
+    <a href="/2018/01/14/stirling/" id="article-nav-older" class="article-nav-link-wrap">
+      <i class="fa fa-chevron-left pull-left"></i>
+      <span class="article-nav-link-title">Stirling 公式</span>
+    </a>
+  </li>
+  
+  
+  <li role="presentation">
+    <a href="/2018/03/03/hello-hexo/" id="article-nav-newer" class="article-nav-link-wrap">
+      <span class="article-nav-link-title">hello-hexo</span>
+      <i class="fa fa-chevron-right pull-right"></i>
+    </a>
+  </li>
+  
+</ul>
+
+
+  
+</article>
+
+
+
+
+        </div>
+        <div class="col-sm-3 col-sm-offset-1 blog-sidebar">
+          
+  <div class="sidebar-module sidebar-module-inset">
+  <h4>About</h4>
+  <p>A blog.</p>
+
+</div>
+
+
+  
+  <div class="sidebar-module">
+    <h4>Categories</h4>
+    <ul class="sidebar-module-list"><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/categories/proof/">proof</a><span class="sidebar-module-list-count">3</span></li></ul>
+  </div>
+
+
+
+  
+  <div class="sidebar-module">
+    <h4>Tags</h4>
+    <ul class="sidebar-module-list"><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/tags/math/">math</a><span class="sidebar-module-list-count">3</span></li></ul>
+  </div>
+
+
+
+  
+  <div class="sidebar-module">
+    <h4>Tag Cloud</h4>
+    <p class="tagcloud">
+      <a href="/tags/math/" style="font-size: 10px;">math</a>
+    </p>
+  </div>
+
+
+  
+  <div class="sidebar-module">
+    <h4>Archives</h4>
+    <ul class="sidebar-module-list"><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/archives/2018/03/">March 2018</a><span class="sidebar-module-list-count">2</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/archives/2018/01/">January 2018</a><span class="sidebar-module-list-count">3</span></li></ul>
+  </div>
+
+
+
+  
+  <div class="sidebar-module">
+    <h4>Recents</h4>
+    <ul class="sidebar-module-list">
+      
+        <li>
+          <a href="/2018/03/11/hello-world/">Hello World</a>
+        </li>
+      
+        <li>
+          <a href="/2018/03/03/hello-hexo/">hello-hexo</a>
+        </li>
+      
+        <li>
+          <a href="/2018/01/20/multi-tylor/">多元泰勒展开</a>
+        </li>
+      
+        <li>
+          <a href="/2018/01/14/stirling/">Stirling 公式</a>
+        </li>
+      
+        <li>
+          <a href="/2018/01/14/tylor/">泰勒公式</a>
+        </li>
+      
+    </ul>
+  </div>
+
+
+
+        </div>
+    </div>
+  </div>
+  <footer class="blog-footer">
+  <div class="container">
+    <div id="footer-info" class="inner">
+      &copy; 2018 大橘<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+
+  
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js" integrity="sha384-8gBf6Y4YYq7Jx97PIqmTwLPin4hxIzQw5aDmUg/DDhul9fFpbbLcLh3nTIIDJKhx" crossorigin="anonymous"></script>
+
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
+
+
+
+<script src="/js/script.js"></script>
+
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+        tex2jax: {
+            inlineMath: [ ["$","$"], ["\\(","\\)"] ],
+            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'],
+            processEscapes: true
+        }
+    });
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax();
+        for (var i = 0; i < all.length; ++i)
+            all[i].SourceElement().parentNode.className += ' has-jax';
+    });
+</script>
+<script src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+</body>
+</html>
